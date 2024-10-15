@@ -14,9 +14,9 @@ function handleFormSubmission(event) {
     } else {
         // Create a blog post object
         const blogPost = {
-            username: username,
-            title: title,
-            content: content
+            username: username.value.trim(),
+            title: title.value.trim(),
+            content: content.value.trim()
         };
 
         // Store form data in local storage

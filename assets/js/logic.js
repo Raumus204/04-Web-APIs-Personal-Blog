@@ -1,5 +1,4 @@
 // TODO: Create logic to toggle the light/dark mode styles for the page and circle. The mode should be saved to local storage.
-// TODO: Create logic to toggle the light/dark mode styles for the page and circle. The mode should be saved to local storage.
 const lightSwitch = document.querySelector(".switch-light");
 const container = document.querySelector('.container');
 const icon = document.getElementById("toggle");
@@ -17,10 +16,12 @@ lightSwitch.addEventListener('click', function () {
     mode = 'dark';
     container.setAttribute('class', 'dark');
     icon.innerHTML = "&#x1F318;";
+    document.documentElement.style.setProperty('--circle-color', '#ff0022');
   } else {
     mode = 'light';
     container.setAttribute('class', 'light');
     icon.innerHTML = '&#x1F31E;';
+    document.documentElement.style.setProperty('--circle-color', '#ffb100');
   }
     // Save the current mode to local storage
   localStorage.setItem('mode', mode);
@@ -38,7 +39,9 @@ function readLocalStorage() {
 function storeLocalStorage() {
  
   let existingFormData = JSON.parse(localStorage.getItem('formData'));
-  if(existingFormData == null) existingFormData = [];
+  if(!existingFormData) {
+    existingFormData = [];
+  }
           //creating an object
   let formData = {
       username: username.value.trim(),

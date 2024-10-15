@@ -1,7 +1,8 @@
 // TODO: Create a variable that selects the main element, and a variable that selects the back button element
-const mainElement = document.querySelector("#main");
+const mainElement = document.getElementById("blog-posts");
 const backButton = document.querySelector("#back");
-const articleList = document.querySelector("#list");
+const uList = document.getElementById("list");
+
 // TODO: Create a function that builds an element and appends it to the DOM
 let formData = JSON.parse(localStorage.getItem("formData")) || [];
 function renderArticles() {
@@ -9,18 +10,20 @@ function renderArticles() {
         const li = document.createElement('li');
         const article = document.createElement('article');
         
+        
         li.classList.add('card');
         li.setAttribute('data-index', i);
         
         let h2 = document.createElement('h2');
-        h2.textContent = formData[i].username
+        h2.textContent = formData[i].title
         let blockquote = document.createElement('blockquote');
-        blockquote.textContent = formData[i].title
+        blockquote.textContent = formData[i].content
         let p = document.createElement('p');
-        p.textContent = "Posted By: " + formData[i].content
+        p.textContent = "Posted By: " + formData[i].username
 
+       
+        uList.appendChild(li);
         li.appendChild(article);
-        articleList.appendChild(li);
         article.appendChild(h2);
         article.appendChild(blockquote);
         article.appendChild(p);
@@ -31,7 +34,7 @@ function renderArticles() {
 function noBlogPosts() { 
     if (formData.length === null)
         console.log("No blog posts")
-        mainElement.innerText = "No Blog Posts"
+        uList.innerText = "no blog posts are availble"
 
 };
 
